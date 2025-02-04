@@ -1,7 +1,10 @@
 import './App.css'
 import axios from "axios";
 import {Routes, Route } from "react-router-dom";
-import Sidebar from './layouts/sidebar';
+import Dashboard from './pages/dashboard/Dashboard';
+import Post from './pages/posts/PostList';
+import Sidebar from './layouts/Sidebar';
+import User from './pages/users/UserList';
 
 function App() {
  
@@ -19,15 +22,14 @@ function App() {
     }
   )
   return (
-    <>  
+    <main className='flex'>  
           <Sidebar/>
           <Routes>
-              <Route></Route>
-              <Route></Route>
-              <Route></Route>
-            
+              <Route path='/' element={<Dashboard api={api}/>}></Route>
+              <Route path='/userlist' element={<User api={api}/>}></Route>
+              <Route path='/postlist' element={<Post api={api}/>}></Route>
           </Routes>
-    </>
+    </main>
   )
 }
 

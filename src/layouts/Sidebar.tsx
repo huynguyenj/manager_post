@@ -2,21 +2,22 @@
 import React, { useState } from 'react'
 import logo from '../assets/logo_manager.png'
 import { BackArrow,PostList,UserList,DashBoard } from '../components/MuiIcon'
+import { Link } from 'react-router-dom'
 type MenuItem = {
       title:string,
-      src: React.ComponentType
+      src: React.ComponentType,
+      path:string
 }
 function Sidebar() {
       const [open,setOpen] = useState<boolean>(true);
       const handleOpen = ():void=>{
             setOpen((prev)=>!prev)
-            console.log(open)
       }
       
       const menu:MenuItem[] = [
-            {title:"Dashboard",src:DashBoard},
-            {title:"Users",src:UserList},
-            {title:"Posts",src:PostList},
+            {title:"Dashboard",src:DashBoard, path:'/'},
+            {title:"Users",src:UserList, path:'/userlist'},
+            {title:"Posts",src:PostList, path:'/postlist'},
       ]
   return (
     <aside className={`${open ? "w-72" : "w-32"} bg-gray-950 h-screen duration-300 ease-in relative `}>
@@ -28,11 +29,14 @@ function Sidebar() {
             </div>
             <ul className='pt-6 p-10'>
                   {menu.map((item,index)=>(
-                        <li className='flex gap-x-4 p-2 mt-3 hover:bg-blue-500 cursor-pointer items-center rounded-2xl relative' key={index}>
+                        <Link to={item.path} key={index}>
+                          <li className='flex gap-x-4 p-2 mt-3 hover:bg-blue-500 cursor-pointer items-center rounded-2xl relative'>
                               <div><item.src sx={{color:'white',fontSize:'2rem'}}/></div>
                               <span className={`${!open&&"hidden"} text-white`}>{item.title}</span>
                              
                         </li>
+                        </Link>
+                      
                   ))}
             </ul>
       </nav>

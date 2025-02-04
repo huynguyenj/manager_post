@@ -1,6 +1,10 @@
+import { AxiosInstance } from 'axios'
 import React from 'react'
 
-function Dashboard() {
+type DashboardPageApi = {
+  api:AxiosInstance
+}
+function Dashboard({api}:DashboardPageApi) {
   return (
     <div>Dashboard</div>
   )
