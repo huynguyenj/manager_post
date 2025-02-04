@@ -14,7 +14,7 @@ function App() {
 
   api.interceptors.request.use(
   (config)=>{
-      console.log('Request sent: ',config)
+      // console.log('Request sent: ',config)
       return config;
     },
     (error)=>{
@@ -22,7 +22,7 @@ function App() {
     }
   )
   return (
-    <main className='flex'>  
+    <main className='flex min-h-screen'>  
           <Sidebar/>
           <Routes>
               <Route path='/' element={<Dashboard api={api}/>}></Route>
