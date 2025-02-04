@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import { useEffect, useState } from 'react';
 import { Button, Form, Modal, Space, Table, Spin, Card, Typography, Input } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons';
@@ -7,7 +7,7 @@ import type { User } from '../../types/user';
 import { toast } from 'react-toastify';
 
 type UserPageApi = {
-  api: typeof axios
+  api: AxiosInstance
 } 
 
 const { Title } = Typography;
@@ -27,7 +27,7 @@ function User({ api }: UserPageApi) {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const response = await api.get("https://67273f54302d03037e70005d.mockapi.io/User");
+      const response = await api.get("/user");
       setUsers(response.data as User[]);
     } catch (error) {
       console.log("Failed to fetch users: ", error);
@@ -45,7 +45,7 @@ function User({ api }: UserPageApi) {
         onOk: async () => {
           try {
             await api.put(
-              `https://67273f54302d03037e70005d.mockapi.io/User/${editingUser.id}`, 
+              `/user/${editingUser.id}`, 
               {
                 ...values,
                 updateDate: new Date().toISOString()
@@ -63,7 +63,7 @@ function User({ api }: UserPageApi) {
       });
     } else {
       try {
-        await api.post('https://67273f54302d03037e70005d.mockapi.io/User', {
+        await api.post('/user', {
           ...values,
           createDate: new Date().toISOString(),
           updateDate: new Date().toISOString()
@@ -88,7 +88,7 @@ function User({ api }: UserPageApi) {
       cancelText: 'No',
       onOk: async () => {
         try {
-          await api.delete(`https://67273f54302d03037e70005d.mockapi.io/User/${id}`);
+          await api.delete(`/user/${id}`);
           toast.success('User deleted successfully!');
           fetchUsers();
         } catch (error) {

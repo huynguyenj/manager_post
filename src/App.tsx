@@ -24,17 +24,14 @@ function App() {
     }
   )
   return (
-
     <main className='flex min-h-screen'>  
-
           <Sidebar/>
           <Routes>
               <Route path='/' element={<Dashboard api={api}/>}></Route>
               <Route path='/userlist' element={<User api={api}/>}></Route>
               <Route path='/postlist' element={<Post api={api}/>}></Route>
           </Routes>
-      </main>
-      <ToastContainer
+          <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -45,8 +42,7 @@ function App() {
         draggable
         pauseOnHover
       />
-    </>
+    </main>
   )
 }
-
 export default App
