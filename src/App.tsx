@@ -5,6 +5,7 @@ import Dashboard from './pages/dashboard/Dashboard';
 import Post from './pages/posts/PostList';
 import Sidebar from './layouts/Sidebar';
 import User from './pages/users/UserList';
+import UserDetail from './pages/users/UserDetail';
 
 function App() {
  
@@ -28,6 +29,7 @@ function App() {
               <Route path='/' element={<Dashboard api={api}/>}></Route>
               <Route path='/userlist' element={<User api={api}/>}></Route>
               <Route path='/postlist' element={<Post api={api}/>}></Route>
+              <Route path='/userdetail' element={<UserDetail/>}></Route>
           </Routes>
     </main>
   )
