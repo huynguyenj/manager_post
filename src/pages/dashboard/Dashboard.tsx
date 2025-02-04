@@ -22,7 +22,7 @@ function Dashboard({ api }: DashboardPageApi) {
       const posts = await api.get("/post");
       setUsers(response.data); 
       setPostList(posts.data);
-      // console.log(users);
+      console.log(users);
     } catch (error) {
       console.log("Failed to fetch users: ", error);
     }
@@ -63,7 +63,7 @@ function Dashboard({ api }: DashboardPageApi) {
     if(availibleYear.length > 0){
       setSelectedYear(availibleYear[0])
     }
- },[]);
+ },[availibleYear]);
 
  const chartData = selectedYear ? Object.entries(data[selectedYear]||{}).map(([month,value])=>({
     month,
@@ -79,7 +79,7 @@ function Dashboard({ api }: DashboardPageApi) {
 
   return (
     <div className="w-full">
-      <h1 className="ml-10 mt-2 text-3xl font-bold text-center">Dashboard</h1>
+      <h1 className="ml-10 mt-2 text-3xl font-bold text-gray-500">Dashboard</h1>
       <div className="p-5">
         {users.length > 0 && postList.length > 0 ? (
           <div>
