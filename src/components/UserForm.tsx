@@ -56,7 +56,7 @@ function UserForm({ onFinish, onCancel, form, editingUser }: UserFormProps) {
         rules={[
           { required: true, message: 'Please input password!' },
           { min: 8, message: 'Password must be at least 8 characters' },
-          { max: 16, message: 'Password cannot exceed 16 characters' },
+          { max: 20, message: 'Password cannot exceed 20 characters' },
           {
             validator: (_, value) => {
               if (!value) return Promise.resolve();
