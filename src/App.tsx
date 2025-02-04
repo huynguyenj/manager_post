@@ -5,6 +5,8 @@ import Dashboard from './pages/dashboard/Dashboard';
 import Post from './pages/posts/PostList';
 import Sidebar from './layouts/Sidebar';
 import User from './pages/users/UserList';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
  
@@ -22,14 +24,28 @@ function App() {
     }
   )
   return (
+
     <main className='flex min-h-screen'>  
+
           <Sidebar/>
           <Routes>
               <Route path='/' element={<Dashboard api={api}/>}></Route>
               <Route path='/userlist' element={<User api={api}/>}></Route>
               <Route path='/postlist' element={<Post api={api}/>}></Route>
           </Routes>
-    </main>
+      </main>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </>
   )
 }
 
