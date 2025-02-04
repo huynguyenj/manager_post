@@ -4,6 +4,8 @@ import Loading from "../../components/Loading";
 import { UserIcon } from "../../components/MuiIcon";
 import CardData from "../../components/CardData";
 import { BarChart } from '@mui/x-charts/BarChart';
+import { toast } from 'react-toastify';
+
 type DashboardPageApi = {
   api: AxiosInstance;
 };
@@ -24,12 +26,19 @@ function Dashboard({ api }: DashboardPageApi) {
       setPostList(posts.data);
       console.log(users);
     } catch (error) {
+      toast.error('Get data fail!');
       console.log("Failed to fetch users: ", error);
     }
   };
 
   const handleReload = ():void=>{
+    try {
       fetchData();
+      toast.success('Reload data successfully!');
+    } catch (error) {
+      toast.error('Reload fail!');
+      console.log(error)
+    }
   }
   
   const handleChange = (e:React.ChangeEvent<HTMLSelectElement>):void=>{
@@ -74,7 +83,7 @@ function Dashboard({ api }: DashboardPageApi) {
   
  const formattedChartData = chartData.map((data) => ({
   ...data,
-  month: monthNames[Number(data.month) - 1], // Convert month number to text 
+  month: monthNames[+data.month - 1], // Convert month number to text 
 }));
 
   return (
@@ -90,8 +99,8 @@ function Dashboard({ api }: DashboardPageApi) {
             <CardData style="bg-emerald-300 w-50 h-30 md:w-70 lg:w-80 lg:h-40 rounded-2xl gap-4 flex flex-col items-center justify-center p-2" data={postList.length} Icon={UserIcon} content={"Number of posts:"}/>
           
           </div>
-
-          <select value={selectedYear} onChange={handleChange} className="w-50 mt-5 p-2 border bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+          <label className="mr-2" htmlFor="year">Select year</label>
+          <select id="year" value={selectedYear} onChange={handleChange} className="w-50 mt-5 p-2 border bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
             {availibleYear.length > 0 && availibleYear.map((year)=>(
               <option value={year} key={year}>{year}</option>
             ))}
