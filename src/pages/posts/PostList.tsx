@@ -7,12 +7,14 @@ import type { Post } from '../../types/post';
 import type { User } from '../../types/user';
 import Title from 'antd/es/typography/Title';
 import PostForm from '../../components/PostForm';
+import { useNavigate } from 'react-router-dom';
 
 type PostPageApi = {
   api: AxiosInstance;
 };
 
 function Post({ api }: PostPageApi) {
+  const navigate = useNavigate();
   const [posts, setPosts] = useState<Post[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -93,7 +95,14 @@ function Post({ api }: PostPageApi) {
   };
 
   const columns = [
-    { title: 'User', key: 'user', render: (text: string, record: Post) => getUserName(record.userId) },
+    { title: 'User', key: 'user', render: (text: string, record: Post) => (
+      <span
+        className="cursor-pointer text-blue-500 hover:underline"
+        onClick={() => navigate(`/postlist/${record.id}`)}
+      >
+        {getUserName(record.userId)}
+      </span>
+    ), },
     { title: 'Title', dataIndex: 'title', key: 'title' },
     { title: 'Description', dataIndex: 'description', key: 'description' },
     {

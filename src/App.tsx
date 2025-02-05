@@ -5,10 +5,10 @@ import Dashboard from './pages/dashboard/Dashboard';
 import Post from './pages/posts/PostList';
 import Sidebar from './layouts/Sidebar';
 import User from './pages/users/UserList';
-import PostDetail from './pages/posts/PostDetail';
 import UserDetail from './pages/users/UserDetail';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PostDetail from './pages/posts/PostDetail';
 function App() {
  
   const api = axios.create({
