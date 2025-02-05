@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { useEffect, useState } from 'react';
-import { Button, Form, Input, message, Modal, Popconfirm, Select, Table, Tag, Spin, Card } from 'antd';
+import { Button, Form, Input, message, Modal, Popconfirm, Table, Tag, Spin, Card } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons';
 import type { Post } from '../../types/post';
 import type { User } from '../../types/user';
@@ -18,7 +18,6 @@ function Post({ api }: PostPageApi) {
   const [editingPost, setEditingPost] = useState<Post | null>(null);
   const [form] = Form.useForm();
   const [loading, setLoading] = useState<boolean>(false);
-  const [loadingUsers, setLoadingUsers] = useState<boolean>(false);
   const [searchText, setSearchText] = useState<string>('');
 
   useEffect(() => {
@@ -39,14 +38,12 @@ function Post({ api }: PostPageApi) {
   };
 
   const fetchUsers = async () => {
-    setLoadingUsers(true);
     try {
       const response = await api.get('/user');
       setUsers(response.data as User[]);
     } catch (error) {
       console.log('Failed to fetch users: ', error);
     }
-    setLoadingUsers(false);
   };
 
   const getUserName = (userId: string) => {
@@ -61,6 +58,7 @@ function Post({ api }: PostPageApi) {
       message.success('Post deleted successfully');
       fetchPosts();
     } catch (error) {
+      console.log(error)
       message.error('Failed to delete post');
     }
   };
@@ -78,12 +76,13 @@ function Post({ api }: PostPageApi) {
         await api.put(`/post/${editingPost.id}`, values);
         message.success('Post updated successfully');
       } else {
-        await api.post('/post', values);
+        await api.post('/post', {...values,createDate: new Date().toISOString(),updateDate: new Date().toISOString()});
         message.success('Post created successfully');
       }
       setIsModalVisible(false);
       fetchPosts();
     } catch (error) {
+      console.log(error)
       message.error('Failed to save post');
     }
   };
@@ -179,7 +178,7 @@ function Post({ api }: PostPageApi) {
             rowKey="id"
             className="shadow-sm w-full"
             pagination={{
-              pageSize: 10,
+              pageSize: 4,
               showSizeChanger: true,
               showTotal: (total) => `Total ${total} posts`
             }}

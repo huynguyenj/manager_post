@@ -196,7 +196,7 @@ function User({ api }: UserPageApi) {
             rowKey="id"
             className="shadow-sm w-full"
             pagination={{
-              pageSize: 10,
+              pageSize: 4,
               showSizeChanger: true,
               showTotal: (total) => `Total ${total} users`
             }}
