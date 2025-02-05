@@ -20,7 +20,7 @@ function Sidebar() {
             {title:"Posts",src:PostList, path:'/postlist'},
       ]
   return (
-    <aside className={`${open ? "w-72" : "w-32"} bg-gray-950 h-screen duration-300 ease-in relative `}>
+    <aside className={`${open ? "w-72" : "w-32"} bg-gray-950 min-h-screen duration-300 ease-in relative `}>
       <nav className='h-full flex flex-col border-r shadow-sm'>
             <div className='w-full px-8 flex items-center'>
                   <img className='w-20' src={logo} alt="icon" />
@@ -40,7 +40,7 @@ function Sidebar() {
                   ))}
             </ul>
       </nav>
-      <button className={`${open&&"rotate-180"} rounded-full bg-blue-300 cursor-pointer hover:bg-amber-200 transition duration-75 ease-in-out absolute top-5 -right-2 `} onClick={handleOpen}><BackArrow/></button>
+      <button className={`${open&&"rotate-180"} z-50 rounded-full bg-blue-300 cursor-pointer hover:bg-amber-200 transition duration-75 ease-in-out absolute top-5 -right-2 `} onClick={handleOpen}><BackArrow/></button>
     </aside>
   )
 }
