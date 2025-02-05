@@ -55,12 +55,14 @@ function Barchart({data,chartName,nameData}:DataChart) {
       }));
   return (
     <div>    
-      <label className="mr-2" htmlFor="year">Select year</label>
-      <select id="year" value={selectedYear} onChange={handleChange} className="w-50 mt-5 p-2 border bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+      <div className='flex gap-2 items-center '>
+      <label className="sm:text-[1rem] text-[0.7rem]" htmlFor="year">Select year</label>
+      <select id="year" value={selectedYear} onChange={handleChange} className="w-30 sm:w-50 p-2 border bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
       {availibleYear.length > 0 && availibleYear.map((year)=>(
         <option value={year} key={year}>{year}</option>
       ))}
     </select>
+      </div>
     <div className="bg-gray-50 mt-5 p-2 shadow-md">
       <h2 className="font-bold m-2">{chartName}</h2>
     <BarChart

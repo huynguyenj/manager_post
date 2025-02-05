@@ -1,7 +1,7 @@
 import { AxiosInstance } from "axios";
 import { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
-import { UserIcon } from "../../components/MuiIcon";
+import { UserIcon,InterestingIcon } from "../../components/MuiIcon";
 import CardData from "../../components/CardData";
 import { toast } from 'react-toastify';
 import Barchart from "../../components/Barchart";
@@ -48,11 +48,11 @@ function Dashboard({ api }: DashboardPageApi) {
       <div className="p-5">
         {users.length > 0 && postList.length > 0 ? (
           <div>
-          <div className="flex gap-5 items-center bg-gray-100 p-5 rounded-2xl">
-            <button className="bg-amber-500 text-white font-bold p-3 rounded-2xl hover:opacity-75 cursor-pointer m-2" onClick={handleReload}>Reload</button>
+          <div className="flex gap-5 items-center bg-gray-100 p-5 rounded-2xl w-full mb-5">
+            <button className="bg-amber-500  text-white font-bold p-3 rounded-2xl hover:opacity-75 cursor-pointer m-2" onClick={handleReload}>Reload</button>
 
-            <CardData style="bg-blue-500 w-50 h-30 md:w-70 lg:w-80 lg:h-40 rounded-2xl gap-4 flex flex-col items-center justify-center p-2" data={users.length} Icon={UserIcon} content={"Number of users:"}/>
-            <CardData style="bg-emerald-300 w-50 h-30 md:w-70 lg:w-80 lg:h-40 rounded-2xl gap-4 flex flex-col items-center justify-center p-2" data={postList.length} Icon={UserIcon} content={"Number of posts:"}/>
+            <CardData style="bg-blue-500 w-15 h-20 sm:w-40 sm:h-20 md:w-70 lg:w-80 lg:h-40 rounded-2xl gap-4 flex flex-col items-center justify-center p-2" data={users.length} Icon={UserIcon} content={"Number of users:"}/>
+            <CardData style="bg-emerald-300 w-15 h-20 sm:w-40 sm:h-20 md:w-70 lg:w-80 lg:h-40 rounded-2xl gap-4 flex flex-col items-center justify-center p-2" data={postList.length} Icon={InterestingIcon} content={"Number of posts:"}/>
           
           </div>
           <div className="grid grid-cols-2 gap-5">
