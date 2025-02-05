@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios'
+import { AxiosInstance } from 'axios'
 import { useEffect, useState } from 'react';
 import { Button, Form, Modal, Space, Table, Spin, Card, Typography, Input } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons';
@@ -196,7 +196,7 @@ function User({ api }: UserPageApi) {
             rowKey="id"
             className="shadow-sm w-full"
             pagination={{
-              pageSize: 10,
+              pageSize: 4,
               showSizeChanger: true,
               showTotal: (total) => `Total ${total} users`
             }}
