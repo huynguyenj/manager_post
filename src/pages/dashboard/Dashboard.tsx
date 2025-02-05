@@ -69,7 +69,7 @@ function Dashboard({ api }: DashboardPageApi) {
  const availibleYear = Object.keys(data).map(Number).sort((a,b)=> b-a).map(String);
 
  useEffect(()=>{
-    if(availibleYear.length > 0){
+    if(availibleYear.length > 0 && !selectedYear){
       setSelectedYear(availibleYear[0])
     }
  },[availibleYear]);
