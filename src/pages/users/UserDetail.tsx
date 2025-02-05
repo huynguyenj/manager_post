@@ -6,7 +6,6 @@ import {
   PlusOutlined,
 } from "@ant-design/icons";
 import {
-  Avatar,
   Image,
   Input,
   Space,
@@ -14,7 +13,6 @@ import {
   Modal,
   Anchor,
   Upload,
-  Card,
 } from "antd";
 import type { GetProp, UploadFile, UploadProps } from "antd";
 import { useState } from "react";
@@ -37,7 +35,6 @@ export default function UserDetail() {
   const [isEditingPassword, setIsEditingPassword] = useState(false);
   const [openModal, setOpenModal] = useState<string | null>(null);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState("Content of the modal");
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState<UploadFile[]>([
@@ -70,7 +67,6 @@ export default function UserDetail() {
     setOpenModal(modalName);
   };
   const handleOk = () => {
-    setModalText("Saving...");
     setConfirmLoading(true);
     setTimeout(() => {
       setOpenModal(null);
@@ -206,9 +202,9 @@ export default function UserDetail() {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
-        <img src="https://cdn.venngage.com/template/thumbnail/small/84c22658-8ba9-4d94-8ea7-13a21d5e93a7.webp" />
+        <img src="https://cdn.venngage.com/template/thumbnail/small/84c22658-8ba9-4d94-8ea7-13a21d5e93a7.webp" alt="image" />
       </Modal>
-      <div style={{ padding: "20px" }}>
+      <div className="p-4.5">
         <Anchor
           direction="horizontal"
           items={[
