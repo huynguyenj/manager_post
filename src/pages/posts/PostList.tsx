@@ -95,7 +95,7 @@ function Post({ api }: PostPageApi) {
   };
 
   const columns = [
-    { title: 'User', key: 'user', render: (text: string, record: Post) => (
+    { title: 'User', key: 'user', render: (_: string, record: Post) => (
       <span
         className="cursor-pointer text-blue-500 hover:underline"
         onClick={() => navigate(`/postlist/${record.id}`)}
@@ -108,7 +108,7 @@ function Post({ api }: PostPageApi) {
     {
       title: 'Status',
       key: 'status',
-      render: (text: string, record: Post) => (
+      render: (_: string, record: Post) => (
         <Tag color={record.status ? 'green' : 'gray'}>
           {record.status ? 'Published' : 'Draft'}
         </Tag>
@@ -117,7 +117,7 @@ function Post({ api }: PostPageApi) {
     {
       title: 'Actions',
       key: 'actions',
-      render: (text: string, record: Post) => (
+      render: (_: string, record: Post) => (
         <span>
           <Button
             icon={<EditOutlined />}

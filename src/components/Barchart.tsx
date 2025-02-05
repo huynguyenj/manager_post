@@ -18,7 +18,7 @@ function Barchart({data,chartName,nameData}:DataChart) {
             // const dataSet:{[key:string]:{[value:number]:number}} = {}; //the same above
           
             data.forEach((dataTime)=>{
-              const date = new Date(dataTime.createDate);
+              const date = new Date((dataTime as {createDate:string}).createDate); //Type Assertion
               const year = date.getFullYear();
               const month = date.getMonth() + 1;
       
