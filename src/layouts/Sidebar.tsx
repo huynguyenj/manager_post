@@ -5,7 +5,7 @@ import { BackArrow,PostList,UserList,DashBoard,UserProfile } from '../components
 import { Link } from 'react-router-dom'
 type MenuItem = {
       title:string,
-      src: React.ComponentType,
+      src: React.ComponentType<{ sx?: object }>,
       path:string
 }
 function Sidebar() {
